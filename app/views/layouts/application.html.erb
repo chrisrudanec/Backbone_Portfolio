@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Backbone</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <meta charset="utf-8">
+  <title>My Amazing Fat Client Portfolio Builder</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <section id="navigation">
+  </section>
 
+  <section id="content">
+    <!-- Backbone Output In Here ! -->
+  </section>
+
+  <section id="footer">
+  </section>
+
+  <%= javascript_include_tag "application" %>
 </body>
 </html>
