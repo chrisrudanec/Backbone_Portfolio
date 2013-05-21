@@ -1,0 +1,13 @@
+<img src="<%= user.attributes.image_url %>" width="200" height="200" alt="<%= user.full_name() %>" class="bio-image shadowed" />
+
+<div class="bio-text">
+  <h1 class="name"><%= user.full_name() %></h1>
+
+  <h2 class="bio">
+    <%= user.attributes.bio %>
+  </h2>
+
+  <h3 class="mission">
+    <%= user.attributes.mission %>
+  </h3>
+</div>
