@@ -10,8 +10,10 @@ app.Router = Backbone.Router.extend({
     $('#content').html(view.render().el);
   },
 
-  userShow: function() {
-    var view = new app.views.ProjectView();
+  userShow: function(user_id) {
+    var user = new app.models.User({id: user_id});
+    user.fetch();
+    var view = new app.views.ProjectView({ model : user });
     $('#content').html(view.render().el);
   }
 
