@@ -33,3 +33,26 @@ To run the tests, visit the jasmine script runner in your browser:
 * Add code to the page so that the sorting arrow works and you can update the order of the projects.
 * Amend the project model to add any other information that you see fit.
 * Personalise your portfolio with CSS.
+
+## TODO 21/05
+
+* Refactor your application to use templates, backed by a rails application. You'll need one controller that renders your index page, updating the asset pipeline, including EJS and breaking the script templates into seperate files
+* Add a router to the application so that you have the following routes:
+
+| URL | Action | Purpose |
+|:----------|:-----------|:-----------|
+| ' ' | 'home' | Display a funky homepage with a list of users currently in the system |
+| '/users:id' | 'userShow' | Display the bio page of a given user, with a list of their recent projects |
+
+* Update the homepage so that it dynamically shows all users in the system, with links so that when I click on a link, I see the project details, skills and biography for a given user.
+
+# TIPS
+
+* Add the ProjectList collection to the User model, so that I can pull out the projects related to that User
+* Refactor the app so that all of the code that displays and handles events for a particular project is in a 'partial' rendered by the main ProjectView page
+* The router is the thing that should be attaching the output of the views to the DOM
+* Each view's render() function should return this, so that you can decide when / how to render it
+* IN A BRANCH add your rails application using ```rails new . -d postgresql -J -T```
+* Commit little chnages often so that you can see changes when things go wrong
+* Have some setup code in your init.js to get some inital users in the localStorage, which you can comment out as needed.
+* Don't cut+paste / merge this code. Really.
