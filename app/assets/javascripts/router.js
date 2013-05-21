@@ -1,11 +1,16 @@
 app.Router = Backbone.Router.extend({
 
   routes: {
-    '' : 'projectIndex',
-    'project/:cid' : 'projectShow'
+    '' : 'home',
+    'user/:id' : 'userShow'
   },
 
-  projectIndex: function() {
+  home: function() {
+    var view = new app.views.Home();
+    view.render();
+  },
+
+  userShow: function() {
     // Try to find projects already in the local storage
     var projectList = new app.collections.ProjectList();
     projectList.fetch();
@@ -33,10 +38,6 @@ app.Router = Backbone.Router.extend({
     new app.views.UserView({
       model: me
     }).render();
-  },
-
-  projectShow: function(cid) {
-
   }
 
 });
