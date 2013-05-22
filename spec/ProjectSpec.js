@@ -23,25 +23,34 @@ describe("A Project", function() {
 
   describe("Persistance in local storage", function() {
     beforeEach(function() {
+      // Clear the database
+      //localStorage.clear();
+
+      // Get an ID
       project.save();
+
+      var ruby = new app.models.Skill({ name: 'Ruby', project_id: project.id });
+      //ruby.save();
+      var ajax = new app.models.Skill({ name: 'AJAX', project_id: project.id });
+      //ajax.save();
+      var skill_list = new app.collections.SkillList();
+      skill_list.create(ruby);
+      skill_list.create(ajax);
+
+      project.fetch();
+
     });
 
     it("should have an id", function() {
       expect(project.id).not.toBe(null);
     });
-  });
 
-  describe("Setting an attribute", function() {
-    beforeEach(function() {
-      project.set({
-        "title" : "Cool Beans"
-      });
+    it("should have two skills in its collection", function() {
+      var skills = project.getSkills();
+      expect(skills.length).toEqual(2);
+      expect(skills[0].attributes.name).toEqual("Ruby");
+      expect(skills[1].attributes.name).toEqual("AJAX");
     });
-
-    it("Should update the title", function() {
-      expect(project.get("title")).toEqual("Cool Beans Changed");
-    });
-
   });
 
   describe("validation", function() {
