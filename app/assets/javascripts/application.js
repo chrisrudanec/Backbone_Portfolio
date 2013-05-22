@@ -2,7 +2,6 @@
 //= require underscore-min
 //= require ejs_production
 //= require backbone-min
-//= require backbone.localStorage-min
 //= require boot
 //= require router
 //= require_tree ./models

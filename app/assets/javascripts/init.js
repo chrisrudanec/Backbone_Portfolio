@@ -20,6 +20,6 @@ $(document).ready(function() {
   // me.save();
 
   var router = new app.Router();
-  Backbone.history.start({pushState: true});
+  Backbone.history.start({pushState: false});
   router.navigate('');
 });

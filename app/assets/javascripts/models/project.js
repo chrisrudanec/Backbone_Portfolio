@@ -1,6 +1,6 @@
 app.models.Project = Backbone.Model.extend({
 
-  localStorage: new Backbone.LocalStorage('portfolio'),
+  urlRoot: '/project',
 
   initialize: function() {
     this.skills = new app.collections.SkillList();
