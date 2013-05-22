@@ -148,6 +148,15 @@ ul.skill-list li {
   float: left;
 }
 
+.skill input {
+  border: 0px;
+  padding: 0px;
+  position: relative;
+  top: -2px;
+  outline: none;
+  float: left;
+}
+
 .skill .delete {
   display: inline-block;
   text-indent: -9999px;

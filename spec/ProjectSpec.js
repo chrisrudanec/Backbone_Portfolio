@@ -24,7 +24,7 @@ describe("A Project", function() {
   describe("Persistance in local storage", function() {
     beforeEach(function() {
       // Clear the database
-      //localStorage.clear();
+      localStorage.clear();
 
       // Get an ID
       project.save();
