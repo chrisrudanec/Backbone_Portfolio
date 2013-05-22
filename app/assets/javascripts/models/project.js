@@ -1,5 +1,9 @@
 app.models.Project = Backbone.Model.extend({
 
+  url: function() {
+
+  },
+
   initialize: function() {
     this.skills = new app.collections.SkillList();
     this.skills.model = app.models.Skill; // Don't know why but this worked
