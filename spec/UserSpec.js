@@ -16,4 +16,20 @@ describe("A User", function() {
     expect(user.full_name()).toEqual("Dan Garland");
   });
 
+  describe("a User with some projects", function() {
+    beforeEach(function() {
+      user.save();
+
+      var project = new app.models.Project({
+        title: 'My Amazing Project'
+      });
+
+      user.projects.add(project);
+    });
+
+    it("should know which projects are what user", function() {
+      expect(user.projects.length).toEqual(1);
+    });
+  });
+
 });

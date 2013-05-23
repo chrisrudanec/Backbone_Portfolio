@@ -14,7 +14,7 @@ app.views.Home = Backbone.View.extend({
     var _this = this;
 
     users.fetch({
-      success: function(users, response, options) {
+      success: function(users) {
         // Add a <li> element containing a link to each profile page
         users.forEach(function(user) {
           _this.$el.find("#users").append("<li><a href='#' class='user-link' data-id='" + user.id + "'>" + user.full_name() + "</a></li>");

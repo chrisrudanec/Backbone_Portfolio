@@ -8,7 +8,12 @@ app.views._Project = Backbone.View.extend({
   events: {
     'dblclick .project-name': 'editProjectName',
     'change .edit-title': 'updateTitle',
-    'click .add-skill' : 'addSkill'
+    'click .add-skill' : 'addSkill',
+    'click .remove-project': 'destroyProject'
+  },
+
+  initialize: function() {
+    this.listenTo(this.model, 'destroy', this.remove);
   },
 
   render: function() {
@@ -33,7 +38,12 @@ app.views._Project = Backbone.View.extend({
   updateTitle: function() {
     var new_title = this.$el.find('.edit-title').val().trim();
     this.model.set('title', new_title);
-    this.model.save();
+    if(this.model.isNew()) {
+      this.collection.create(this.model);
+    }
+    else {
+      this.model.save();
+    }
     this.$el.find('.edit-title').val('').hide().prev('h3').show().html(new_title);
   },
 
@@ -46,6 +56,10 @@ app.views._Project = Backbone.View.extend({
     });
 
     this.$el.find('.skill-list').append(skill.render().el).find(".skill:last").hide().fadeIn();
+  },
+
+  destroyProject: function() {
+    this.model.destroy();
   }
 
 });

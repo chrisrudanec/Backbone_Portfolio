@@ -15,7 +15,7 @@ app.Router = Backbone.Router.extend({
     user.fetch({
       success: function(user, response, options) {
         var view = new app.views.ProjectView({ model : user });
-      $('#content').html(view.render().el);
+        $('#content').html(view.render().el);
       }
     });
 
