@@ -21,7 +21,6 @@ app.models.Project = Backbone.Model.extend({
 
   parse: function(response) {
     var skills_json = response.skills;
-    //response.skills = new app.collections.SkillList(skills_json);
     this.skills = new app.collections.SkillList(skills_json);
     return response;
   },
