@@ -17,7 +17,7 @@ app.views.ProjectView = Backbone.View.extend({
         });
 
         _this.listenTo(_this.model.projects, 'add', _this.render);
-        _this.listenTo(_this.model.projects, 'change', _this.render);
+        // _this.listenTo(_this.model.projects, 'change', _this.render);
         _this.render();
       }
     });
