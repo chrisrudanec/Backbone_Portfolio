@@ -45,7 +45,7 @@ describe("A Project", function() {
     });
 
     it("should generate JSON for projects and skills", function() {
-      var json = '{"project":{"title":"My amazing test project","url":"http://example.org"},"skills_attributes":[{"name":"Ruby"},{"name":"AJAX"}]}';
+      var json = '{"project":{"title":"My amazing test project","url":"http://example.org","skills_attributes":[{"name":"Ruby"},{"name":"AJAX"}]}}';
       expect($.ajax.mostRecentCall.args[0]["url"]).toEqual("/users/1/projects");
       expect($.ajax.mostRecentCall.args[0]["data"]).toEqual(json);
     })

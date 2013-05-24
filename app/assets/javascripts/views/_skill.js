@@ -11,7 +11,6 @@ app.views._Skill = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(this.model, 'change', this.render);
-    this.listenTo(this.model, 'destroy', this.remove);
   },
 
   render: function() {
@@ -24,6 +23,7 @@ app.views._Skill = Backbone.View.extend({
   removeSkill: function() {
     this.model.destroy();
     $(event.currentTarget).toggle('slide');
+    this.remove();
   },
 
   editSkill: function() {
@@ -31,8 +31,8 @@ app.views._Skill = Backbone.View.extend({
   },
 
   updateSkill: function() {
-    $(event.target).hide().prev('.name').show();
     var newName = $(event.target).val();
     this.model.set({ name : newName });
+    this.model.project.skills.set(this.model);
   }
 });

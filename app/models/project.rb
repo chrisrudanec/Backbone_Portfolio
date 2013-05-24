@@ -7,6 +7,6 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :skills
 
   def as_json(options = {})
-    super({ :include => :skills, :only => [:title, :body, :url, :user_id] }.merge(options))
+    super({ :include => :skills, :only => [:id, :title, :body, :url, :user_id] }.merge(options))
   end
 end

@@ -17,6 +17,7 @@ app.views._Project = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model, 'destroy', this.remove);
     this.listenTo(this.model.skills, 'add', this.render);
+    this.listenTo(this.model.skills, 'change', this.update);
   },
 
   render: function() {
@@ -24,14 +25,16 @@ app.views._Project = Backbone.View.extend({
     var _this = this;
 
     this.model.skills.forEach(function(skill) {
-      var skill_view = new app.views._Skill({
-        project: this.model,
-        model: skill
-      });
+      skill.project = _this.model;
+      var skill_view = new app.views._Skill({ model: skill });
       _this.$el.find('ul.skill-list').append(skill_view.render().el);
     });
 
     return this;
+  },
+
+  update: function() {
+    this.model.save();
   },
 
   updateTitle: function() {
@@ -51,7 +54,10 @@ app.views._Project = Backbone.View.extend({
   },
 
   addSkill: function() {
-    var skill = new app.models.Skill({name: "Click here to edit" });
+    var skill = new app.models.Skill({
+      name: "Click here to edit",
+      project: this.model
+    });
     this.model.skills.add(skill);
   },
 
