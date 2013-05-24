@@ -1,12 +1,24 @@
 describe("A Project", function() {
 
   var project;
+  var user;
 
   beforeEach(function() {
+    spyOn($, 'ajax');
+    user = new app.models.User({
+      id: 1,
+      first_name: 'Dan',
+      last_name: 'Garland',
+      image_url: 'uploads/me.jpg',
+      bio: 'Freelance Ruby on Rails developer from London, UK',
+      mission: 'Expressing creativity through innovative web development'
+    });
+
     project = new app.models.Project({
       title: "My amazing test project",
       url: "http://example.org"
     });
+    project.user = user;
   });
 
   it("should be able to retreive the title", function() {
@@ -23,34 +35,20 @@ describe("A Project", function() {
 
   describe("Persistance in local storage", function() {
     beforeEach(function() {
-      // Clear the database
-      localStorage.clear();
-
-      // Get an ID
-      project.save();
+      user.projects.create(project);
 
       var ruby = new app.models.Skill({ name: 'Ruby', project_id: project.id });
-      //ruby.save();
       var ajax = new app.models.Skill({ name: 'AJAX', project_id: project.id });
-      //ajax.save();
-      var skill_list = new app.collections.SkillList();
-      skill_list.create(ruby);
-      skill_list.create(ajax);
-
-      project.fetch();
-
+      project.skills.add(ruby);
+      project.skills.add(ajax);
+      project.save();
     });
 
-    it("should have an id", function() {
-      expect(project.id).not.toBe(null);
-    });
-
-    it("should have two skills in its collection", function() {
-      var skills = project.getSkills();
-      expect(skills.length).toEqual(2);
-      expect(skills[0].attributes.name).toEqual("Ruby");
-      expect(skills[1].attributes.name).toEqual("AJAX");
-    });
+    it("should generate JSON for projects and skills", function() {
+      var json = '{"project":{"title":"My amazing test project","url":"http://example.org"},"skills_attributes":[{"name":"Ruby"},{"name":"AJAX"}]}';
+      expect($.ajax.mostRecentCall.args[0]["url"]).toEqual("/users/1/projects");
+      expect($.ajax.mostRecentCall.args[0]["data"]).toEqual(json);
+    })
   });
 
   describe("validation", function() {

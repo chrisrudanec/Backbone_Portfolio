@@ -1,10 +1,10 @@
 app.models.Project = Backbone.Model.extend({
 
-  url: function() {
+  urlRoot: function() {
     var url = '/users/' + this.user.id + '/projects';
-    if(!this.isNew()) {
-      url += '/' + this.id;
-    }
+    // if(!this.isNew()) {
+    //   url += '/' + this.id;
+    // }
     return url;
   },
 
@@ -22,6 +22,16 @@ app.models.Project = Backbone.Model.extend({
   getSkills: function() {
     this.skills.fetch();
     return this.skills.where({ project_id : this.id });
+  },
+
+  toJSON: function() {
+    json = { project : this.attributes };
+    skills_attributes = [];
+    this.skills.forEach(function(skill) {
+      skills_attributes.push(skill.toJSON());
+    });
+
+    return _.extend(json, { skills_attributes: skills_attributes });
   }
 
 });

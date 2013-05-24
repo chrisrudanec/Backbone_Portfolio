@@ -1,6 +1,5 @@
 app.collections.SkillList = Backbone.Collection.extend({
 
-  model: app.models.Skill,
-  url: '/skills'
+  model: app.models.Skill
 
 });
