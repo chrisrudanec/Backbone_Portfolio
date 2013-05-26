@@ -5,21 +5,25 @@
   <meta charset="utf-8">
   <title>My Amazing Fat Client Portfolio Builder</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
 
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
   <section id="navigation">
   </section>
 
   <section id="content">
-    <!-- Backbone Output In Here ! -->
+    <%= yield %>
   </section>
 
   <section id="footer">
   </section>
 
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "backbone" if @backbone %>
 </body>
 </html>
