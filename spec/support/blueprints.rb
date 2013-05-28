@@ -6,12 +6,19 @@ User.blueprint do
   image_url { '/uploads/me.jpg' }
   bio { [Faker::Company.catch_phrase, "from", Faker::Address.city].join(" ")}
   mission { Faker::Company.bs }
+  email { Faker::Internet.email }
+  password { 'password' }
+  password_confirmation { 'password' }
 end
 
 Project.blueprint do
   title { Faker::Lorem.words(rand(4) + 1).join(" ") }
   url { "http://#{Faker::Internet.domain_name}" }
   body { Faker::Lorem.words(50).join(" ") }
+end
+
+Follow.blueprint do
+  follower { User.make! }
 end
 
 Skill.blueprint do

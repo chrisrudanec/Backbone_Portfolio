@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :bio, :mission, :image_url
 
   has_many :projects
+
+  has_many :follows
+  has_many :followers, :through => :follows, :source => :follower
 end
