@@ -17,10 +17,10 @@ app.views.UserView = Backbone.View.extend({
 
     this.model.followers.fetch({
       success: function(followers) {
-        followers.forEach(function(follower) {
-          var follow_html = _this.followTemplate.render({ image_url : follower.get("image_url")});
-          _this.$el.find('.followers').append(follow_html);
+        var follow_html = _this.followTemplate.render({
+          followers: followers.toJSON()
         });
+        _this.$el.find('.followers').html(follow_html);
       }
     });
 
