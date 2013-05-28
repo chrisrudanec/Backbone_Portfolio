@@ -2,15 +2,15 @@ app.views.UserView = Backbone.View.extend({
 
   tagName: 'div',
   id: 'bio',
-  template: JST['templates/user'],
-  followTemplate: JST['templates/follow'],
+  template: HoganTemplates['user'],
+  followTemplate: HoganTemplates['follow'],
   events: {
     'click .follow-button' : 'followUser'
   },
 
   render: function() {
     // Get some HTML from somewhere
-    var html = this.template({user: this.model });
+    var html = this.template.render(this.model);
     var _this = this;
     // Append it to this view's div#bio element
     this.$el.html(html);
@@ -18,7 +18,7 @@ app.views.UserView = Backbone.View.extend({
     this.model.followers.fetch({
       success: function(followers) {
         followers.forEach(function(follower) {
-          var follow_html = _this.followTemplate({ image_url : follower.get("image_url")});
+          var follow_html = _this.followTemplate.render({ image_url : follower.get("image_url")});
           _this.$el.find('.followers').append(follow_html);
         });
       }
